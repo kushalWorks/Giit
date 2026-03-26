@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Portfolio</title>
+
+<style>
+    body {
+        margin: 0;
+        background: #000;
+        color: #0ff;
+        font-family: 'Courier New', monospace;
+        overflow-x: hidden;
+    }
+
+    /* Neon Glow Effect */
+    .glow {
+        color: #0ff;
+        text-shadow: 0 0 5px #0ff,
+                     0 0 10px #0ff,
+                     0 0 20px #0ff;
+    }
+
+    header {
+        text-align: center;
+        padding: 60px 20px;
+        border-bottom: 1px solid #0ff;
+        animation: fadeIn 2s ease-in;
+    }
+
+    h1 {
+        font-size: 50px;
+        letter-spacing: 3px;
+    }
+
+    .tagline {
+        font-size: 18px;
+        margin-top: 10px;
+        opacity: 0.8;
+    }
+
+    section {
+        max-width: 900px;
+        margin: auto;
+        padding: 40px 20px;
+        animation: slideUp 1.5s ease;
+    }
+
+    h2 {
+        border-left: 4px solid #0ff;
+        padding-left: 10px;
+        margin-bottom: 20px;
+    }
+
+    .card {
+        border: 1px solid #0ff;
+        padding: 20px;
+        margin: 15px 0;
+        transition: 0.3s;
+        position: relative;
+    }
+
+    .card:hover {
+        box-shadow: 0 0 20px #0ff;
+        transform: scale(1.03);
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        margin: 10px 0;
+    }
+
+    /* Typing Animation */
+    .typing {
+        border-right: 2px solid #0ff;
+        white-space: nowrap;
+        overflow: hidden;
+        width: 0;
+        animation: typing 4s steps(30, end) forwards,
+                   blink 0.7s infinite;
+    }
+
+    /* Animations */
+    @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+    }
+
+    @keyframes blink {
+        50% { border-color: transparent }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0 }
+        to { opacity: 1 }
+    }
+
+    @keyframes slideUp {
+        from {
+            transform: translateY(50px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    /* Matrix Background Effect */
+    canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    footer {
+        text-align: center;
+        padding: 20px;
+        border-top: 1px solid #0ff;
+    }
+</style>
+</head>
+
+<body>
+
+<canvas id="matrix"></canvas>
+
+<header>
+    <h1 class="glow">KOTAGIRI KUSHAL </h1>
+    <p class="tagline typing">ECE Student | Tech Enthusiast | Future Engineer</p>
+</header>
+
+<section>
+    <h2 class="glow">About Me</h2>
+    <div class="card">
+        <p>
+            I am passionate about technology, coding, and building innovative solutions.
+            I enjoy working on real-world projects and exploring new tech domains.
+        </p>
+    </div>
+</section>
+
+<section>
+    <h2 class="glow">Skills</h2>
+    <div class="card">
+        <ul>
+            <li>⚡ Python Programming</li>
+            <li>⚡ Web Development (HTML, CSS, JS)</li>
+            <li>⚡ Git & GitHub</li>
+            <li>⚡ AWS (EC2, S3)</li>
+            <li>⚡ Problem Solving (DSA)</li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <h2 class="glow">Interests</h2>
+    <div class="card">
+        <ul>
+            <li>💻 Web Development</li>
+            <li>🔌 VLSI & Electronics</li>
+            <li>☁ Cloud Computing</li>
+            <li>🤖 AI & ML</li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <h2 class="glow">Contact</h2>
+    <div class="card">
+        <p>Email: kotagirikusha22@email.com</p>
+        <p>GitHub: github.com/kushalWorks</p>
+        <p>LinkedIn: linkedin.com/in/kushal</p>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 KUSHAL</p>
+</footer>
+
+<script>
+/* Matrix Effect */
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+
+const letters = "01";
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+
+const drops = [];
+for (let i = 0; i < columns; i++) {
+    drops[i] = 1;
+}
+
+function draw() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#0ff";
+    ctx.font = fontSize + "px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+        const text = letters[Math.floor(Math.random() * letters.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+        }
+
+        drops[i]++;
+    }
+}
+
+setInterval(draw, 33);
+</script>
+
+</body>
+</html>
